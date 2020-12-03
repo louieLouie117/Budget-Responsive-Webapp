@@ -132,3 +132,4 @@ dmypy.json
 .DS_Store
 
 project_budget/settings.py
+settings.py
