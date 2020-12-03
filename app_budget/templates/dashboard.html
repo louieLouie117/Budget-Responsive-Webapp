@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  {%load static %}
+  <link rel="stylesheet" href="{%static 'css/style.css'%}" />
+  <script src="{% static 'js/script.js' %}"></script>
+</head>
+
+<body>
+
+  <header>
+    <div class="hello_container">
+      <h2>Hello, {{user.first_name}}</h2>
+      <a href="/logout">logout</a>
+    </div>
+
+  </header>
+
+  <main>
+    <nav>
+      <ul class="mainNav_container">
+        <li onclick="showBudget()">Budget</li>
+        <li onclick="showIncome()">Income</li>
+        <li onclick="showTransactions()">Transactions</li>
+      </ul>
+    </nav>
+    <section class="transactions_container">
+      <div class="button_container">
+        <h2>Monthly Transactions</h2>
+        <button onclick="showForm_transactions()">+</button>
+      </div>
+      <!-- Transaction Loop-->
+      <div class="log_container">
+        <ul class="logList_container">
+          {%for one_transaction in user.transactions.all%}
+          <li>
+            <div class="dots">
+              <a href="/remove/{{one_transaction.id}}"><img src="static/img/dotsImg.png" alt="" /></a>
+            </div>
+            {%if one_transaction.category == 'Home'%}
+            <img src="static/img/homeImg.png" alt="" />
+            {%endif%}
+            {%if one_transaction.category == 'Bills/Utilites'%}
+            <img src="static/img/BillsImg.png" alt="" />
+            {%endif%}
+            {%if one_transaction.category == 'Personal'%}
+            <img src="static/img/personalImg.png" alt="" />
+            {%endif%}
+            {%if one_transaction.category == 'Eating Out'%}
+            <img src="static/img/eatingoutImg.png" alt="" />
+            {%endif%}
+            {%if one_transaction.category == 'Transportation'%}
+            <img src="static/img/carImg.png" alt="" />
+            {%endif%}
+            {%if one_transaction.category == 'Giving'%}
+            <img src="static/img/givingImg.png" alt="" />
+            {%endif%}
+            <div class="items">
+              <p>{{one_transaction.title}}</p>
+              <p>{{one_transaction.notes}}</p>
+            </div>
+            <h4>-${{one_transaction.amount}}</h4>
+          </li>
+          {%endfor%}
+
+
+        </ul>
+      </div>
+      <div class="total_container">
+        <h4>${{show_total}}</h4>
+        <p>Expenses</p>
+      </div>
+    </section>
+    <section class="income_container">
+      <!-- <div class="button_container">
+                <h2>Monthly Income</h2>
+                <button>+</button>
+            </div> -->
+    </section>
+    <section class="budget_contianer">
+      <!-- <div class="button_container">
+                <h2>Monthly Budget</h2>
+                <button>+</button>
+            </div> -->
+    </section>
+  </main>
+  <aside class="form_container" id="formTransactions">
+    <button onclick="hideForm_transactions()">X</button>
+    <div class="formOptions_container">
+      <div class="options_container">
+        <div>
+          <button onclick="showHome()">
+            <img src="static/img/homeImg.png" alt="" />
+          </button>
+        </div>
+        <div>
+          <button onclick="showBills()">
+            <img src="static/img/billsImg.png" alt="" />
+          </button>
+        </div>
+        <div>
+          <button onclick="showPersonal()">
+            <img src="static/img/personalImg.png" alt="" />
+          </button>
+        </div>
+        <div>
+          <button onclick="showEating()">
+            <img src="static/img/eatingoutImg.png" alt="" />
+          </button>
+        </div>
+
+        <button onclick="showCar()">
+          <img src="static/img/carImg.png" alt="" />
+        </button>
+
+
+        <button onclick="showGiving()">
+          <img src="static/img/givingImg.png" alt="" />
+        </button>
+      </div>
+      <!--Transcation forms-->
+      <form id="homeForm" action="/add/home" method="post">
+        <h2>Home</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Home">
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Home'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+      <form id="billsForm" action="/add/bill" method="post">
+        <h2>Bills/Utitlies</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Bills/Utilites">
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Bills/Utilites'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+      <form id="personalForm" action="/add/personal" method="post">
+        <h2>Personal</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Personal">
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Personal'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+      <form id="eatingForm" action="/add/eating" method="post">
+        <h2>Eating Out</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Eating Out">
+
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Eating Out'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+      <form id="carForm" action="/add/car" method="post">
+        <h2>Transportation</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Transportation">
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Transportation'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+      <form id="givingForm" action="/add/giving" method="post">
+        <h2>Giving</h2>
+        {% csrf_token%}
+
+        <input type="hidden" name="category_budget" value="Giving">
+        <select name="selected_titel">
+          {%for budget in user.bugets.all%}
+          {%for category in budget.categorys.all%}
+          {%if budget.title == 'Giving'%}
+          <option value="{{category.title}}">{{category.title}}</option>
+          {%endif%}
+          {%endfor%}
+          {%endfor%}
+        </select>
+
+        <input type="text" name="user_notes" placeholder="notes:" />
+        <input type="number" min="0.01" step="0.01" name="spent_amount" placeholder="Amount $00.00" />
+        <button type="submit">Save</button>
+      </form>
+
+
+
+
+    </div>
+  </aside>
+
+  <footer>
+    <section class="box_container" id="overview">
+      <ul>
+        {%for budget in user.bugets.all%}
+        <li>
+          <div class="title_container">
+            {%if budget.title == 'Home'%}
+            <img src="static/img/homeImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Bills/Utilites'%}
+            <img src="static/img/billsImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Personal'%}
+            <img src="static/img/personalImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Eating Out'%}
+            <img src="static/img/eatingoutImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Transportation'%}
+            <img src="static/img/carImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Giving'%}
+            <img src="static/img/givingImg.png" alt="" />
+            {%endif%}
+            <h3>{{budget.title}}</h3>
+          </div>
+          <div class="spent_container">
+            <h3>$00.00</h3>
+            <p>Spent this Month</p>
+          </div>
+
+          <div class="boxFooter-container"></div>
+        </li>
+        {%endfor%}
+
+      </ul>
+    </section>
+    <section class="box_container" id="budget">
+      <ul>
+        {%for budget in user.bugets.all%}
+        <li>
+          <div class="budgetTitel_container">
+            {%if budget.title == 'Home'%}
+            <img src="static/img/homeImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Bills/Utilites'%}
+            <img src="static/img/billsImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Personal'%}
+            <img src="static/img/personalImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Eating Out'%}
+            <img src="static/img/eatingoutImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Transportation'%}
+            <img src="static/img/carImg.png" alt="" />
+            {%endif%}
+            {%if budget.title == 'Giving'%}
+            <img src="static/img/givingImg.png" alt="" />
+            {%endif%}
+
+
+            <h3>{{budget.title}}</h3>
+            <button onclick="showForm_budget()">+</button>
+          </div>
+          <ul class="budgetItems_container">
+            {%for category in budget.categorys.all%}
+            <li>
+              <a href="/delete/{{category.id}}">
+                <div class="edit_budget"></div>
+              </a>
+              <p>{{category.title}}</p>
+              <p>${{category.amount}}</p>
+            </li>
+            {%endfor%}
+
+          </ul>
+
+          <div class="budgetTotal-container">
+            <p>total: $00.00</p>
+          </div>
+        </li>
+        {%endfor%}
+
+      </ul>
+    </section>
+  </footer>
+  <!-- Error needs fixing-->
+  <aside class="form_container" id="formBudget">
+    <button onclick="hideForm_buget()">X</button>
+    <form class="budget_form" action="/add/budget" method="post">
+      <h2>Budget</h2>
+      {% csrf_token%}
+      <select name="budget" class="budget_style">
+        <option value="Home">Home</option>
+        <option value="Bills/Utilites">Bills/Utilites</option>
+        <option value="Personal">Personal</option>
+        <option value="Eating Out">Eating Out</option>
+        <option value="Transportation">Transportation</option>
+        <option value="Giving">Giving</option>
+      </select>
+      <!-- <input type="text" name="budget_class" value="{context}" /> -->
+      <input type="text" name="budget_title" placeholder="title" />
+      <input type="hidden" name="budget_notes" placeholder="hidden" value="notes:" />
+      <input type="text" name="budget_amount" placeholder="Amount $00.00" />
+      <button type="submit">Save</button>
+    </form>
+  </aside>
+</body>
+
+</html>

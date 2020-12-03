@@ -1,0 +1,477 @@
+/* Golble styles------------- */
+
+body {
+  display: grid;
+  background: #f6f6f6;
+  /* max-width: 65em; */
+  /* margin: 0 auto; */
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  padding-bottom: 50px;
+  /* height: 100vh; */
+  /* width: 100vw; */
+}
+
+@media screen and (min-width: 1300px) {
+  body {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    column-gap: 20px;
+    padding: 0;
+    height: 97vh;
+    margin-right: 20px;
+  }
+
+  header {
+    grid-column: 1/3;
+    grid-row: 1/2;
+  }
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  font-size: 1em;
+  font-weight: normal;
+  color: #4cb5a6;
+}
+
+h4 {
+  margin: 0;
+  color: rgb(185, 3, 3);
+  font-weight: normal;
+}
+
+h3 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* header styles----------------------------------------------- */
+header {
+  display: grid;
+  justify-content: flex-end;
+  align-content: center;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  font-size: 1.2em;
+}
+
+.hello_container {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+}
+
+
+/* Main styles----------------------------------------------------------------- */
+main {
+  display: grid;
+  grid-template-columns: minmax(auto, 330px);
+  background: white;
+  padding: 20px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.315);
+  height: 80vh;
+  width: 350px;
+  align-content: flex-start;
+  justify-items: center;
+  justify-self: center;
+}
+
+
+.mainNav_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  cursor: pointer;
+}
+
+.button_container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: flex-end;
+  justify-items: flex-end;
+  padding: 1px;
+  margin-top: 20px;
+}
+
+.button_container button {
+  background: #4cb5a6;
+  color: white;
+  font-size: 2.2em;
+  width: 50px;
+  height: 50px;
+  border: none;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.459);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+
+
+.log_container {
+  margin-top: 10px;
+  height: 60vh;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.log_container::-webkit-scrollbar {
+  display: none;
+}
+
+.logList_container {
+  display: grid;
+  row-gap: 10px;
+  margin-left: 15px;
+}
+
+.logList_container img {
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.dots img {
+  width: 10px;
+  height: 40px;
+}
+
+.logList_container li {
+  display: grid;
+  grid-template-columns: 30px 20px 2fr 1fr;
+  background: white;
+  height: 60px;
+  width: 320px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.315);
+  justify-items: center;
+  align-content: center;
+}
+
+.total_container {
+  display: grid;
+  justify-items: flex-end;
+  padding-right: 15px;
+}
+
+/* From styles-------------------------- */
+
+.form_container {
+  position: fixed;
+  display: none;
+  grid-template-rows: 20%;
+  left: 0;
+  top: 0;
+  margin-top: 20px;
+  height: 120vh;
+  width: 100%;
+  margin-top: -30px;
+  background: rgba(0, 0, 0, 0.678);
+}
+
+.form_container button:first-child {
+  background: none;
+  width: 40px;
+  height: 40px;
+  justify-self: center;
+  align-self: flex-end;
+  border-radius: 20px;
+  border: solid 2px white;
+  color: white;
+  font-size: 1.5em;
+}
+
+.formOptions_container {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 20px;
+  row-gap: 10px;
+  padding: 20px;
+  margin-top: 30px;
+  background: white;
+  min-width: 350px;
+  max-height: 400px;
+  justify-self: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.315);
+}
+
+.options_container {
+  display: grid;
+  border-right: solid 1px #4cb5a6;
+}
+
+.formOptions_container form {
+  display: grid;
+}
+
+.form_container form select {
+  padding: 10px;
+  font-size: 1.3em;
+  height: 50px;
+  width: auto;
+}
+
+.formOptions_container form {
+  display: none;
+}
+
+.options_container img {
+  cursor: pointer;
+  margin-right: 10px;
+  justify-self: center;
+  align-self: center;
+}
+
+.options_container button {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* .budget_style {
+    color: white;
+    background: #4CB5A6;
+} */
+
+.form_container form input {
+  padding: 10px;
+  font-size: 1em;
+  height: 20px;
+}
+
+.form_container form button {
+  font-size: 1em;
+  height: 40px;
+  color: white;
+  background: #4cb5a6;
+  border: none;
+}
+
+/* footer-------------------------------------------------------- */
+
+footer {
+  margin-top: 20px;
+  display: grid;
+  width: auto;
+  justify-self: center;
+}
+
+#budget {
+  display: none;
+}
+
+.box_container {
+  display: grid;
+  /* background: red; */
+  height: auto;
+  margin: 0;
+  padding: 0;
+  height: 350px;
+}
+
+.box_container>ul {
+  display: flex;
+  float: left;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.box_container>ul>li {
+  display: grid;
+  grid-template-columns: 320px;
+  grid-template-rows: auto;
+  background: white;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.226);
+}
+
+@media screen and (min-width: 1300px) {
+  main {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-self: center;
+    justify-items: center;
+  }
+
+  footer {
+    margin-top: 0;
+    align-self: center;
+  }
+
+  .box_container {
+    display: grid;
+    margin-top: 0;
+    height: auto;
+    background: none;
+  }
+
+  .box_container>ul {
+    display: grid;
+    grid-template-columns: 350px 350px 350px;
+    row-gap: 25px;
+    column-gap: 50px;
+    justify-items: auto;
+    /* background: red; */
+    overflow: hidden;
+  }
+
+  .box_container>ul>li {
+    height: 350px;
+  }
+}
+
+/* .box_container ul:last-child li:last-child {
+    background: blue;
+    margin-right: 200px;
+} */
+
+/* overview styles-------------------------------- */
+
+.title_container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  column-gap: 10px;
+  grid-template-columns: 50px 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.title_container :first-child {
+  justify-self: flex-end;
+}
+
+.title_container :last-child {
+  justify-self: flex-start;
+  color: #c9c9c9;
+  font-weight: lighter;
+  font-size: 1.7em;
+}
+
+.title_container img {
+  height: 40px;
+  width: 40px;
+}
+
+.spent_container {
+  display: grid;
+  height: 250px;
+  font-weight: lighter;
+  align-items: center;
+  justify-items: center;
+}
+
+.spent_container :first-child {
+  font-size: 2em;
+  align-self: flex-end;
+  color: #4cb5a6;
+}
+
+.spent_container :last-child {
+  align-self: flex-start;
+  color: #c9c9c9;
+}
+
+/* budget styles */
+
+.budgetTitel_container {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 50px 2fr 1fr;
+  justify-items: center;
+  align-items: center;
+  align-items: flex-start;
+}
+
+.budgetTitel_container img {
+  height: 40px;
+  width: 40px;
+}
+
+.budgetTitel_container>h3 {
+  color: #c9c9c9;
+  font-size: 1.7em;
+  font-weight: lighter;
+  justify-self: flex-start;
+  margin-top: 7px;
+}
+
+.budgetTitel_container>button {
+  background: white;
+  font-size: 1.5em;
+  color: #4cb5a6;
+  border: solid 2px #4cb5a6;
+  border-radius: 20px;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+
+.budgetItems_container::-webkit-scrollbar {
+  display: none;
+}
+
+.budgetItems_container {
+  display: grid;
+  row-gap: 5px;
+  /* background: red; */
+  height: 250px;
+  /* align-content: flex-start; */
+  overflow-y: scroll;
+  background: white;
+  align-content: flex-start;
+
+}
+
+.edit_budget {
+  width: 9px;
+  height: 40px;
+  background: #4cb5a6;
+  cursor: pointer;
+}
+
+
+
+
+.budgetItems_container li {
+  display: grid;
+  grid-template-columns: 30px 1.5fr 1fr;
+  padding: 3px 10px;
+  margin: none;
+  background: white;
+  font-size: 1.1em;
+  font-weight: normal;
+  align-self: flex-start;
+  align-items: center;
+}
+
+.budget_form {
+  display: grid;
+  padding: 20px;
+  margin-top: 20px;
+  background: white;
+  min-width: 350px;
+  min-height: 400px;
+  justify-self: center;
+  align-self: flex-start;
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 1300px) {}
