@@ -139,3 +139,4 @@ cython_debug/
 
 
 project_budget/settings.py
+settings.py
